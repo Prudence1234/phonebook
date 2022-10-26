@@ -4,6 +4,7 @@ const App = () => {
    const [name, setName] = useState('');
    const [contact, setContact] = useState('');
    const [posts, setPosts] = useState([]);
+   const[id,setId]=useState('')
 
    useEffect(() => {
       const fetchPost = async () => {
@@ -53,6 +54,13 @@ const App = () => {
       setName('');
       setContact('');
    };
+   const handleDelete = (e) => {
+      e.preventDefault();
+      console.log("id is "+ id)
+      // setId(e.target.value)
+      deletePost(id);
+
+   };
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -60,6 +68,15 @@ const App = () => {
    };
   
 return (<>
+   <form className='form'>
+   <input type="text" className="form-control" value={name} placeholder='name'
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input name="" className="form-control" id="" placeholder='contact' 
+                  value={contact} onChange={(e) => setContact(e.target.value)} 
+                ></input>
+                <button type="submit" onClick={handleSubmit} >Add contact</button>
+   </form>
    {posts.map((props) =>{
     return  <React.Fragment>
       <div>
@@ -69,16 +86,12 @@ return (<>
 
       <div className="app">
           <div className="add-post-container">
-            <form onSubmit={handleSubmit}>
-                <input type="text" className="form-control" value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <input name="" className="form-control" id="" 
-                  value={contact} onChange={(e) => setContact(e.target.value)} 
-                ></input>
-                <button type="submit">Add contact</button>
+            <form key={contact.id} >
+                
                 <button className="button">
-                  <div className="delete-btn" onClick={() => deletePost(contact.id)}>Delete</div>
+                
+                  <div className="delete-btn" onClick={handleDelete } value={contact.id} >Delete</div>
+
                 </button>
             </form>
           </div>
@@ -86,6 +99,7 @@ return (<>
       </div>
    </React.Fragment>
    })}
+   
 
 </>);
 };
