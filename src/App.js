@@ -79,13 +79,13 @@ return (<>
    </form>
    {posts.map((props) =>{
     return  <React.Fragment>
-      <div>
+      <div className='info'>
       <p >{props.name}</p>
       <p >{props.contact}</p>
       </div>    
 
       <div className="app">
-          <div className="add-post-container">
+          <div >
             <form key={contact.id} >
                 
                 <button className="button">
