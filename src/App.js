@@ -4,7 +4,7 @@ const App = () => {
    const [name, setName] = useState('');
    const [contact, setContact] = useState('');
    const [posts, setPosts] = useState([]);
-   const[id,setId]=useState('')
+   const[id,  setId]=useState('')
 
    useEffect(() => {
       const fetchPost = async () => {
@@ -26,7 +26,7 @@ const App = () => {
          }
       );
       console.log(response.status)
-      if (response.status === {id}) {
+      if (response.status === 200) {
          setPosts(
             posts.filter((post) => {
                return post.id !== id;
@@ -54,12 +54,11 @@ const App = () => {
       setName('');
       setContact('');
    };
-   const handleDelete = (e) => {
+   const handleDelete = (e, id) => {
       e.preventDefault();
-      console.log("id is "+ id)
-      // setId(e.target.value)
+      console.log(id)
+      setId(e.target.value)
       deletePost(id);
-
    };
 
    const handleSubmit = (e) => {
@@ -67,37 +66,40 @@ const App = () => {
       addContact(name, contact);
    };
   
-return (<>
-   <form className='form'>
-   <input type="text" className="form-control" value={name} placeholder='name'
+return (
+   < >
+   
+       <form className='form'>
+               <input type="text" value={name} placeholder=' name'
                   onChange={(e) => setName(e.target.value)}
                 />
-                <input name="" className="form-control" id="" placeholder='contact' 
+                <br/>
+                
+                <input name=""  id="" placeholder='contact' 
                   value={contact} onChange={(e) => setContact(e.target.value)} 
-                ></input>
-                <button type="submit" onClick={handleSubmit} >Add contact</button>
-   </form>
-   {posts.map((props) =>{
-    return  <React.Fragment>
-      <div className='info'>
-      <p >{props.name}</p>
-      <p >{props.contact}</p>
-      </div>    
-
+                />
+                <br/>
+                <button type="submit" onClick={handleSubmit}  className=
+                'submit'>Add contact</button>
+       </form>
+       {posts.map((props) =>{
+    return  <>
+        <div className='info'>
+          <p >{props.name}</p>
+          <p >{props.contact}</p>
+   
+        </div>
+      
       <div className="app">
-          <div >
-            <form key={contact.id} >
-                
+          <div key={props.id}>
+            
                 <button className="button">
-                
-                  <div className="delete-btn" onClick={handleDelete } value={contact.id} >Delete</div>
-
+                  <div className="delete" onClick={(e) => {handleDelete(e, props.id)}} value={id}> Delete </div>
                 </button>
-            </form>
           </div>
 
       </div>
-   </React.Fragment>
+   </>
    })}
    
 

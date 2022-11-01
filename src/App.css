@@ -1,19 +1,34 @@
+body{
+    background-color: grey;
+    color: black;
+
+}
 .form{
-    box-sizing: border-box;
-    align-items: center;
-    width: 60%;
-    padding: 1px;
-    margin: 10px;
+    max-height: 100vh;
+    align-content: center;
+    background-color: grey;
+    color: black;
+    border: 1px solid grey;
+    max-width: 600px;
+}
+input{
+    min-width: 473px;
+    padding: 10px;
+    margin: 20px;
+
 }
 .info{
-    display: flex;
-    flex-direction: row;
-    
+    background-color: grey;
+    color: black; 
+    max-width: 600px;
+}
+
+.submit{
+    min-width: 473px;
+    padding: 10px;
+    margin: 20px;  
 }
 .delete{
-    display: flexbox;
-    color: black;
-    width: 20%;
-    float: right;
-    
+    min-width: 20%;
+    padding: 5px;
 }
